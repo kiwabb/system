@@ -41,7 +41,6 @@
         <dependency>
             <groupId>com.mybatis-flex</groupId>
             <artifactId>mybatis-flex-processor</artifactId>
-            <version>1.10.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -72,6 +71,10 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -82,11 +85,6 @@
         <dependency>
             <groupId>com.jackmouse</groupId>
             <artifactId>jackmouse-common</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

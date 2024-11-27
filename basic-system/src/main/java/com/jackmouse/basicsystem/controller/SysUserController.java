@@ -36,6 +36,7 @@ public class SysUserController {
      */
     @PostMapping("save")
     public Result<Boolean> save(@RequestBody SysUser sysUser) {
+        sysUser.setPassword("123456");
         return Result.succeed(sysUserService.save(sysUser));
     }
 
@@ -46,7 +47,7 @@ public class SysUserController {
      * @return {@code true} 删除成功，{@code false} 删除失败
      */
     @DeleteMapping("remove/{id}")
-    public Result<Boolean> remove(@PathVariable Long id) {
+    public Result<Boolean> remove(@PathVariable("id") Long id) {
         return Result.succeed(sysUserService.removeById(id));
     }
 
@@ -90,7 +91,8 @@ public class SysUserController {
      */
     @GetMapping("page")
     public Result<Page<SysUser>> page(Page<SysUser> page) {
-        return Result.succeed(sysUserService.page(page));
+        Page<SysUser> page1 = sysUserService.page(page);
+        return Result.succeed(page1);
     }
 
 }

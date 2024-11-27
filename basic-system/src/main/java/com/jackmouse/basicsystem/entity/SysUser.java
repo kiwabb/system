@@ -20,11 +20,11 @@ import lombok.EqualsAndHashCode;
  * @author zhoujiaangyao
  * @since 2024-11-19
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Table("sys_user")
 public class SysUser extends BaseEntity implements Serializable {
 
@@ -70,12 +70,12 @@ public class SysUser extends BaseEntity implements Serializable {
     /**
      * 性别
      */
-    private Boolean sex;
+    private Integer sex;
 
     /**
      * 是否可用
      */
-    private Boolean enabled;
+    private Integer enabled;
 
     /**
      * 用户类型
