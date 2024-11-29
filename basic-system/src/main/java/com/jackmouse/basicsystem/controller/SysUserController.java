@@ -1,5 +1,6 @@
 package com.jackmouse.basicsystem.controller;
 
+import com.jackmouse.common.model.PageResult;
 import com.jackmouse.common.model.Result;
 import com.mybatisflex.core.paginate.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -90,9 +91,8 @@ public class SysUserController {
      * @return 分页对象
      */
     @GetMapping("page")
-    public Result<Page<SysUser>> page(Page<SysUser> page) {
-        Page<SysUser> page1 = sysUserService.page(page);
-        return Result.succeed(page1);
+    public PageResult<SysUser> page(Page<SysUser> page) {
+        return PageResult.succeed(sysUserService.page(page));
     }
 
 }

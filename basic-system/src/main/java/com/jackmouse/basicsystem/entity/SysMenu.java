@@ -57,17 +57,18 @@ public class SysMenu extends BaseEntity implements Serializable {
      */
     private String component;
 
+    private String componentName;
     /**
      * 菜单类型
      */
-    private Boolean type;
+    private Integer type;
 
     /**
      * 是否隐藏
      */
     private Boolean hidden;
 
-    private String css;
+    private String icon;
 
     /**
      * 排序

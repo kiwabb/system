@@ -1,5 +1,6 @@
 package com.jackmouse.basicsystem.controller;
 
+import com.jackmouse.common.model.PageResult;
 import com.jackmouse.common.model.Result;
 import com.mybatisflex.core.paginate.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,7 +47,7 @@ public class SysMenuController {
      * @return {@code true} 删除成功，{@code false} 删除失败
      */
     @DeleteMapping("remove/{id}")
-    public Result<Boolean> remove(@PathVariable Long id) {
+    public Result<Boolean> remove(@PathVariable("id") Long id) {
         return Result.succeed(sysMenuService.removeById(id));
     }
 
@@ -72,13 +73,23 @@ public class SysMenuController {
     }
 
     /**
+     * 查询所有菜单表。
+     *
+     * @return 所有数据
+     */
+    @GetMapping("menuTypeOne")
+    public Result<List<SysMenu>> menuTypeOne() {
+        return Result.succeed(sysMenuService.menuTypeOne());
+    }
+
+    /**
      * 根据菜单表主键获取详细信息。
      *
      * @param id 菜单表主键
      * @return 菜单表详情
      */
     @GetMapping("getInfo/{id}")
-    public Result<SysMenu> getInfo(@PathVariable Long id) {
+    public Result<SysMenu> getInfo(@PathVariable("id") Long id) {
         return Result.succeed(sysMenuService.getById(id));
     }
 
@@ -89,8 +100,8 @@ public class SysMenuController {
      * @return 分页对象
      */
     @GetMapping("page")
-    public Result<Page<SysMenu>> page(Page<SysMenu> page) {
-        return Result.succeed(sysMenuService.page(page));
+    public PageResult<SysMenu> page(Page<SysMenu> page) {
+        return PageResult.succeed(sysMenuService.page(page));
     }
 
 }

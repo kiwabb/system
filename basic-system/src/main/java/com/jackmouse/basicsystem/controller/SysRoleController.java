@@ -1,5 +1,6 @@
 package com.jackmouse.basicsystem.controller;
 
+import com.jackmouse.common.model.PageResult;
 import com.jackmouse.common.model.Result;
 import com.mybatisflex.core.paginate.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,7 +47,7 @@ public class SysRoleController {
      * @return {@code true} 删除成功，{@code false} 删除失败
      */
     @DeleteMapping("remove/{id}")
-    public Result<Boolean> remove(@PathVariable Long id) {
+    public Result<Boolean> remove(@PathVariable("id") Long id) {
         return Result.succeed(sysRoleService.removeById(id));
     }
 
@@ -89,8 +90,8 @@ public class SysRoleController {
      * @return 分页对象
      */
     @GetMapping("page")
-    public Result<Page<SysRole>> page(Page<SysRole> page) {
-        return Result.succeed(sysRoleService.page(page));
+    public PageResult<SysRole> page(Page<SysRole> page) {
+        return PageResult.succeed(sysRoleService.page(page));
     }
 
 }
