@@ -79,7 +79,7 @@ public class SysRoleController {
      * @return 角色表详情
      */
     @GetMapping("getInfo/{id}")
-    public Result<SysRole> getInfo(@PathVariable Long id) {
+    public Result<SysRole> getInfo(@PathVariable("id") Long id) {
         return Result.succeed(sysRoleService.getById(id));
     }
 

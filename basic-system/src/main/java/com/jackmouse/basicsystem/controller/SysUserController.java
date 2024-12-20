@@ -80,7 +80,7 @@ public class SysUserController {
      * @return 详情
      */
     @GetMapping("getInfo/{id}")
-    public Result<SysUser> getInfo(@PathVariable Long id) {
+    public Result<SysUser> getInfo(@PathVariable("id") Long id) {
         return Result.succeed(sysUserService.getById(id));
     }
 
