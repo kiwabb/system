@@ -4,15 +4,10 @@ import com.jackmouse.common.entity.BaseEntity;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
-import java.io.Serializable;
+import lombok.*;
 
 import java.io.Serial;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.EqualsAndHashCode;
+import java.io.Serializable;
 
 /**
  *  实体类。

@@ -7,6 +7,7 @@ import com.mybatisflex.annotation.Table;
 import java.io.Serializable;
 
 import java.io.Serial;
+import java.util.Objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +25,6 @@ import lombok.EqualsAndHashCode;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Table("sys_menu")
 public class SysMenu extends BaseEntity implements Serializable {
 
@@ -74,5 +74,20 @@ public class SysMenu extends BaseEntity implements Serializable {
      * 排序
      */
     private Long sort;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SysMenu sysMenu = (SysMenu) o;
+        return Objects.equals(parentId, sysMenu.parentId) && Objects.equals(name, sysMenu.name) && Objects.equals(path, sysMenu.path) && Objects.equals(component, sysMenu.component) && Objects.equals(componentName, sysMenu.componentName) && Objects.equals(type, sysMenu.type) && Objects.equals(hidden, sysMenu.hidden) && Objects.equals(icon, sysMenu.icon) && Objects.equals(sort, sysMenu.sort);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(parentId, name, path, component, componentName, type, hidden, icon, sort);
+    }
+
+
+
 
 }

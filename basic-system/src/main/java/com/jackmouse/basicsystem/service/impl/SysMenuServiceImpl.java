@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.jackmouse.basicsystem.entity.table.SysMenuTableDef.SYS_MENU;
-import static com.jackmouse.basicsystem.entity.table.SysUserTableDef.SYS_USER;
 
 /**
  * 菜单表 服务层实现。

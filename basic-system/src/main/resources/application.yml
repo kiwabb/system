@@ -17,6 +17,23 @@ management:
       exposure:
         include: "*"
 
+dubbo:
+  registry:
+    address: nacos://${nacos.address:127.0.0.1}:8848?username=nacos&password=nacos
+    # This will enable application-level service discovery only (the recommended service discovery method for Dubbo3).
+    # For users upgrading from Dubbo2.x, please set the value to 'all' for smooth migration.
+    register-mode: instance
+  protocol:
+    name: dubbo
+    port: 50051
+  application:
+    qos-enable: true
+    name: BasicSystemApi
+    qos-port: 22222
+    qos-accept-foreign-ip: false
+    logger: slf4j
+
+
 logging:
   level:
     root: debug

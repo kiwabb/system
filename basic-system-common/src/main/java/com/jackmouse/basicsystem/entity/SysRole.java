@@ -7,6 +7,8 @@ import com.mybatisflex.annotation.Table;
 import java.io.Serializable;
 
 import java.io.Serial;
+import java.util.List;
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
