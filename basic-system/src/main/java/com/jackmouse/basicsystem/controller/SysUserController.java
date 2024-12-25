@@ -3,6 +3,8 @@ package com.jackmouse.basicsystem.controller;
 import com.jackmouse.common.model.PageResult;
 import com.jackmouse.common.model.Result;
 import com.mybatisflex.core.paginate.Page;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.http.HttpRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.jackmouse.basicsystem.entity.SysUser;
 import com.jackmouse.basicsystem.service.SysUserService;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -69,7 +73,8 @@ public class SysUserController {
      * @return 所有数据
      */
     @GetMapping("list")
-    public Result<List<SysUser>> list() {
+    public Result<List<SysUser>> list(HttpServletRequest request) {
+
         return Result.succeed(sysUserService.list());
     }
 
