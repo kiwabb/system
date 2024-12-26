@@ -1,8 +1,13 @@
 package com.jackmouse.basicsystem.controller;
 
+import com.jackmouse.basicsystem.dto.SysMenuDTO;
+import com.jackmouse.basicsystem.service.SysRoleMenuService;
+import com.jackmouse.basicsystem.service.SysUserService;
+import com.jackmouse.basicsystem.vo.SysMenuVO;
 import com.jackmouse.common.model.PageResult;
 import com.jackmouse.common.model.Result;
 import com.mybatisflex.core.paginate.Page;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +31,11 @@ import java.util.List;
 @RequestMapping("/sysMenu")
 public class SysMenuController {
 
-    @Autowired
+    @Resource
     private SysMenuService sysMenuService;
+
+    @Resource
+    private SysRoleMenuService sysRoleMenuService;
 
     /**
      * 添加菜单表。
@@ -38,6 +46,17 @@ public class SysMenuController {
     @PostMapping("save")
     public Result<Boolean> save(@RequestBody SysMenu sysMenu) {
         return Result.succeed(sysMenuService.save(sysMenu));
+    }
+
+    /**
+     * 绑定角色菜单
+     *
+     * @param sysMenu 角色对应的菜单
+     * @return {@code true} 添加成功，{@code false} 添加失败
+     */
+    @PostMapping("assignMenu")
+    public Result<Boolean> assignMenu(@RequestBody SysMenuDTO sysMenu) {
+        return Result.succeed(sysRoleMenuService.assignMenu(sysMenu));
     }
 
     /**
@@ -80,6 +99,16 @@ public class SysMenuController {
     @GetMapping("menuTypeOne")
     public Result<List<SysMenu>> menuTypeOne() {
         return Result.succeed(sysMenuService.menuTypeOne());
+    }
+
+    /**
+     * 查询角色对应的菜单
+     *
+     * @return 所有数据
+     */
+    @GetMapping("getMenuByRoleId/{roleId}")
+    public Result<List<SysMenuVO>> getMenuByRoleId(@PathVariable("roleId") Long roleId) {
+        return Result.succeed(sysMenuService.getMenuByRoleId(roleId));
     }
 
     /**

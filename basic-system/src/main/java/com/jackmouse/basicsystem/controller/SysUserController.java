@@ -1,5 +1,6 @@
 package com.jackmouse.basicsystem.controller;
 
+import com.jackmouse.basicsystem.vo.SysUserVO;
 import com.jackmouse.common.model.PageResult;
 import com.jackmouse.common.model.Result;
 import com.mybatisflex.core.paginate.Page;
@@ -98,6 +99,16 @@ public class SysUserController {
     @GetMapping("page")
     public PageResult<SysUser> page(Page<SysUser> page) {
         return PageResult.succeed(sysUserService.page(page));
+    }
+
+    /**
+     * 获取当前登录的用户信息
+     *
+     * @return 用户信息
+     */
+    @GetMapping("current")
+    public Result<SysUserVO> current() {
+        return Result.succeed(sysUserService.getCurrentUserInfo());
     }
 
 }

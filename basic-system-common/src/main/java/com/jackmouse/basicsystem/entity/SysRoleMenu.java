@@ -37,8 +37,8 @@ public class SysRoleMenu extends BaseEntity implements Serializable {
     @Id(keyType = KeyType.Auto)
     private Long id;
 
-    private Integer roleId;
+    private Long roleId;
 
-    private Integer menuId;
+    private Long menuId;
 
 }
