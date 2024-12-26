@@ -35,11 +35,11 @@ public class SysRoleUser extends BaseEntity implements Serializable {
     /**
      * 用户表id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 角色表id
      */
-    private Integer roleId;
+    private Long roleId;
 
 }

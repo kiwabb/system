@@ -1,9 +1,15 @@
 package com.jackmouse.basicsystem.controller;
 
+import com.jackmouse.basicsystem.dto.SysMenuDTO;
+import com.jackmouse.basicsystem.dto.SysUserDTO;
+import com.jackmouse.basicsystem.dto.UserSearchDTO;
+import com.jackmouse.basicsystem.service.SysRoleMenuService;
+import com.jackmouse.basicsystem.service.SysRoleUserService;
 import com.jackmouse.basicsystem.vo.SysUserVO;
 import com.jackmouse.common.model.PageResult;
 import com.jackmouse.common.model.Result;
 import com.mybatisflex.core.paginate.Page;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.http.HttpRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +37,11 @@ import java.util.List;
 @RequestMapping("/sysUser")
 public class SysUserController {
 
-    @Autowired
+    @Resource
     private SysUserService sysUserService;
+
+    @Resource
+    private SysRoleUserService sysRoleUserService;
 
     /**
      * 添加。
@@ -44,6 +53,28 @@ public class SysUserController {
     public Result<Boolean> save(@RequestBody SysUser sysUser) {
         sysUser.setPassword("123456");
         return Result.succeed(sysUserService.save(sysUser));
+    }
+
+    /**
+     * 绑定角色用户
+     *
+     * @param sysMenu 角色对应的菜单
+     * @return {@code true} 添加成功，{@code false} 添加失败
+     */
+    @PostMapping("assignUser")
+    public Result<Boolean> assignMenu(@RequestBody SysUserDTO sysMenu) {
+        return Result.succeed(sysRoleUserService.assignUser(sysMenu));
+    }
+
+    /**
+     * 删除绑定角色用户
+     *
+     * @param sysMenu 角色对应的菜单
+     * @return {@code true} 添加成功，{@code false} 添加失败
+     */
+    @DeleteMapping("deleteRoleUser")
+    public Result<Boolean> deleteRoleUser(@RequestBody SysUserDTO sysMenu) {
+        return Result.succeed(sysRoleUserService.deleteRoleUser(sysMenu));
     }
 
     /**
@@ -99,6 +130,28 @@ public class SysUserController {
     @GetMapping("page")
     public PageResult<SysUser> page(Page<SysUser> page) {
         return PageResult.succeed(sysUserService.page(page));
+    }
+
+    /**
+     * 获取未分配角色userid 的用户列表
+     *
+     * @param page 分页对象
+     * @return 分页对象
+     */
+    @GetMapping("getUnAssignUser")
+    public PageResult<SysUser> getUnAssignUser(Page<SysUser> page, UserSearchDTO user) {
+        return PageResult.succeed(sysUserService.getUnAssignUser(page, user));
+    }
+
+    /**
+     * 获取已分配角色userid 的用户列表
+     *
+     * @param page 分页对象
+     * @return 分页对象
+     */
+    @GetMapping("getAssignUser")
+    public PageResult<SysUser> getAssignUser(Page<SysUser> page, UserSearchDTO user) {
+        return PageResult.succeed(sysUserService.getAssignUser(page, user));
     }
 
     /**
